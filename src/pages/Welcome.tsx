@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { SafeAreaView, Dimensions, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  SafeAreaView,
+  Dimensions,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 
 import { Entypo, Feather } from '@expo/vector-icons';
 
@@ -20,9 +27,7 @@ export function Welcome() {
       </Text>
 
       <TouchableOpacity activeOpacity={0.8} style={styles.button}>
-        <Feather
-          name="chevron-right"
-          style={styles.buttonicon} />
+        <Feather name="chevron-right" style={styles.buttonicon} />
       </TouchableOpacity>
     </SafeAreaView>
   );
