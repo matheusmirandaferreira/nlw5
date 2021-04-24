@@ -1,10 +1,25 @@
 import React from 'react';
+import AppLoading from 'expo-app-loading';
+import {
+  useFonts,
+  Jost_400Regular,
+  Jost_600SemiBold,
+} from '@expo-google-fonts/jost';
 
-import { Welcome } from './src/pages/Welcome';
+import Routes from './src/routes';
 
 export default function App() {
-  return <Welcome />;
+  const [fontsLoaded] = useFonts({ Jost_400Regular, Jost_600SemiBold });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+  return <Routes />;
 }
 
-// ! -codigo da aula -
+// ! -codigo da aula 1-
 // #missaoespacial
+
+//! -código da aula 2-
+// #embuscadoproximonivel
