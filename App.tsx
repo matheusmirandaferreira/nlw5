@@ -18,8 +18,11 @@ export default function App() {
   return <Routes />;
 }
 
-// ! -codigo da aula 1-
+// ! -código da aula 1-
 // #missaoespacial
 
 //! -código da aula 2-
 // #embuscadoproximonivel
+
+
+// NLW5 - Trilha React Native - Aula 3 
