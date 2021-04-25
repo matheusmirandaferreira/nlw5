@@ -28,7 +28,7 @@ export function Welcome() {
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
         <Text style={styles.title}>
-          Gerencie {'\n'} suas plantas de{'\n'} forma fácil
+          Gerencie{'\n'} suas plantas de{'\n'}forma fácil
         </Text>
         <Image style={styles.image} resizeMode="contain" source={wateringImg} />
         <Text style={styles.subtitle}>
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingHorizontal: 20,
+    height: '100%',
   },
 
   title: {
@@ -69,6 +70,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
+    width: '100%',
     height: Dimensions.get('window').width * 0.7,
   },
 
