@@ -26,3 +26,5 @@ export default function App() {
 
 
 // NLW5 - Trilha React Native - Aula 3 
+
+//json-server ./src/service/server.json --host 192.168.15.8 --port 3333 --delay 1000

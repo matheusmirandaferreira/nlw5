@@ -12,7 +12,7 @@ interface EnvariomentButtonProps extends RectButtonProps {
 
 export function EnvironmentButton({ title, active = false, ...rest }: EnvariomentButtonProps) {
   return (
-    <RectButton style={[styles.container, active && styles.containerActive]}>
+    <RectButton style={[styles.container, active && styles.containerActive]} {...rest}>
       <Text style={[styles.text, active && styles.textActive]}>{title}</Text>
     </RectButton>
   );
@@ -21,8 +21,6 @@ export function EnvironmentButton({ title, active = false, ...rest }: Envariomen
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.shape,
-    height: 76,
-    width: 40,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 12,
@@ -36,6 +34,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.heading,
     fontFamily: fonts.text,
+    paddingHorizontal: 12,
   },
 
   textActive: {
