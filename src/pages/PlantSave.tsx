@@ -22,20 +22,10 @@ import colors from '../styles/colors';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import fonts from '../styles/fonts';
 import { format, isBefore } from 'date-fns';
+import { PlantPros } from '../libs/storage';
 
 interface Params {
-  plant: {
-    id: number;
-    name: string;
-    about: string;
-    water_tips: string;
-    photo: string;
-    environments: [string];
-    frequency: {
-      times: number;
-      repeat_every: string;
-    };
-  };
+  plant: PlantPros;
 }
 
 export function PlantSave() {
@@ -88,7 +78,7 @@ export function PlantSave() {
         )}
 
         {Platform.OS === 'android' && (
-          <TouchableOpacity
+          <TouchableOpacity 
             style={styles.dateTimePickerButton}
             onPress={handleOpenDateTimePickerForAndroid}>
             <Text style={styles.dateTimePickerText}>{`Mudar ${format(selectedDateTime, 'HH:mm')}`}</Text>
