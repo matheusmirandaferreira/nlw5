@@ -24,7 +24,5 @@ export default function App() {
 //! -código da aula 2-
 // #embuscadoproximonivel
 
-
-// NLW5 - Trilha React Native - Aula 3 
-
-//json-server ./src/service/server.json --host 192.168.15.8 --port 3333 --delay 1000
+//! -código da aula 3-
+// #astronautas
