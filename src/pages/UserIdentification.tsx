@@ -12,8 +12,7 @@ import {
   Keyboard,
   Alert,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button } from '../components/Button';
 import colors from '../styles/colors';
@@ -41,13 +40,18 @@ export function UserIdentification() {
   }
 
   async function handleSubmit() {
-    if(!name) {
-      return Alert.alert('Me diz como chamar você 😢')
+    if (!name) {
+      return Alert.alert('Me diz como chamar você 😢');
     }
 
-    await AsyncStorage.setItem('@plantmanager:user', name)
-    
-    navigation.navigate('Confirmation');
+    try {
+      await AsyncStorage.setItem('@plantmanager:user', name);
+
+      navigation.navigate('Confirmation');
+    } catch (err) {
+      console.log(err);
+      Alert.alert('Não foi possível salvar seu nome 😢');
+    }
   }
 
   return (
