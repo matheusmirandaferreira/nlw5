@@ -74,7 +74,7 @@ export function PlantSave() {
   return (
     <View style={styles.container}>
       <View style={styles.plantInfo}>
-        <SvgFromUri uri={plant.photo} height={150} width={150} />
+        <SvgFromUri uri={plant.photo} height={'40%'} width={'40%'} />
         <Text style={styles.plantName}>{plant.name}</Text>
         <Text style={styles.plantAbout}>{plant.about}</Text>
       </View>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   plantInfo: {
     flex: 1,
     paddingHorizontal: 30,
-    paddingVertical: 50,
+    paddingBottom: 40,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.shape,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   controllers: {
     backgroundColor: colors.white,
     paddingHorizontal: 20,
-    paddingBottom: getBottomSpace(),
+    paddingVertical: Platform.OS === 'ios' ? getBottomSpace() : 10,
   },
 
   tipContainer: {
