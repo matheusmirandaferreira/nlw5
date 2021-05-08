@@ -40,9 +40,11 @@ export function MyPlants() {
   return (
     <View style={styles.container}>
       <Header />
+
       <View style={styles.spotlight}>
         <Image style={styles.spotlightImage} source={waterdropImg} />
         <Text style={styles.spotlightText}>{nextWatered}</Text>
+      </View>
 
         <View style={styles.plants}>
           <Text style={styles.plantsTitle}>Próximas regadas</Text>
@@ -54,7 +56,6 @@ export function MyPlants() {
             contentContainerStyle={{ flex: 1 }}
           />
         </View>
-      </View>
     </View>
   );
 }
@@ -65,15 +66,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 30,
-    paddingTop: 50,
+    paddingTop: 20,
     backgroundColor: colors.background,
   },
 
   spotlight: {
     backgroundColor: colors.blue_light,
-    paddingHorizontal: 20,
+    padding: 20,
     borderRadius: 20,
-    height: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

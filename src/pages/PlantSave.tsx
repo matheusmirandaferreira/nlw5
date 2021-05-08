@@ -64,7 +64,7 @@ export function PlantSave() {
           'Fique tranquilo que sempre vamos lembrar você de cuidar das sua plantinha com muito cuidado.',
         buttonTitle: 'Muito obrigado',
         icon: 'hug',
-        nextScreen: 'MyPlant',
+        nextScreen: 'MyPlants',
       });
     } catch (err) {
       return Alert.alert('Não foi possível salvar ! 😥');
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.shape,
+    maxHeight: '50%',
   },
 
   plantName: {
@@ -147,7 +148,6 @@ const styles = StyleSheet.create({
   controllers: {
     backgroundColor: colors.white,
     paddingHorizontal: 20,
-    paddingTop: 20,
     paddingBottom: getBottomSpace(),
   },
 
