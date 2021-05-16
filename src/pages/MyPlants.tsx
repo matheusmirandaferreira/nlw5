@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, Alert } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { formatDistance } from 'date-fns';
 import { pt } from 'date-fns/locale';
@@ -8,7 +8,7 @@ import { PlantCardSecondary } from '../components/PlantCardSecondary';
 import { Header } from '../components/Header';
 import { Load } from '../components/Load';
 import waterdropImg from '../assets/waterdrop.png';
-import { loadPlant, PlantsProps } from '../libs/storage';
+import { loadPlant, PlantsProps, removePlant } from '../libs/storage';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
@@ -16,6 +16,29 @@ export function MyPlants() {
   const [myPlants, setMyPlants] = useState<PlantsProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [nextWatered, setNextWatered] = useState<string>();
+
+  async function handleRemove(plant: PlantsProps) {
+    Alert.alert('Remover', `Deseja remover a ${plant.name} ?`, [
+      {
+        text: 'Não 🙏',
+        style: 'cancel',
+      },
+      {
+        text: 'Sim 😥',
+        onPress: async () => {
+          try {
+            await removePlant(plant.id);
+
+            setMyPlants(oldData =>
+              oldData.filter(item => item.id !== plant.id),
+            );
+          } catch (err) {
+            Alert.alert('Não foi possível remover !');
+          }
+        },
+      },
+    ]);
+  }
 
   useEffect(() => {
     async function loadStorageData() {
@@ -39,9 +62,9 @@ export function MyPlants() {
   }, []);
 
   if (loading) {
-    return <Load />
+    return <Load />;
   }
-  
+
   return (
     <View style={styles.container}>
       <Header />
@@ -51,16 +74,21 @@ export function MyPlants() {
         <Text style={styles.spotlightText}>{nextWatered}</Text>
       </View>
 
-        <View style={styles.plants}>
-          <Text style={styles.plantsTitle}>Próximas regadas</Text>
-          <FlatList
-            data={myPlants}
-            keyExtractor={item => String(item.id)}
-            renderItem={({ item }) => <PlantCardSecondary data={item} />}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ flex: 1 }}
-          />
-        </View>
+      <View style={styles.plants}>
+        <Text style={styles.plantsTitle}>Próximas regadas</Text>
+        <FlatList
+          data={myPlants}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <PlantCardSecondary
+              handleRemove={() => handleRemove(item)}
+              data={item}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ flex: 1 }}
+        />
+      </View>
     </View>
   );
 }

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { format } from 'date-fns'
 
 export interface PlantsProps {
-  id: number;
+  id: string;
   name: string;
   about: string;
   water_tips: string;
@@ -24,7 +24,7 @@ export interface StoragePlantProps {
 
 export async function savePlant(plant: PlantsProps): Promise<void> {
   try {
-    const data = await AsyncStorage.getItem('@plantmanager:plats');
+    const data = await AsyncStorage.getItem('@plantmanager:plants');
     const oldPlants = data ? (JSON.parse(data) as StoragePlantProps) : {};
     const newPlant = {
       [plant.id]: {
@@ -61,4 +61,16 @@ export async function loadPlant(): Promise<PlantsProps[]> {
   } catch (err) {
     throw new Error(err)
   }
+}
+
+export async function removePlant(id: string): Promise<void> {
+  const data = await AsyncStorage.getItem('@plantmanager:plants');
+  const plants = data ? (JSON.parse(data) as StoragePlantProps) : {};
+  delete plants[id];
+
+  await AsyncStorage.setItem(
+    '@plantmanager:plants',
+    JSON.stringify(plants),
+  );
+
 }

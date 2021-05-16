@@ -1,3 +1,4 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
@@ -13,13 +14,26 @@ interface PlantProps extends RectButtonProps {
     photo: string;
     hour: string;
   };
+  handleRemove: () => void;
 }
 
-export const PlantCardSecondary = ({ data, ...rest }: PlantProps) => {
+export const PlantCardSecondary = ({
+  data,
+  handleRemove,
+  ...rest
+}: PlantProps) => {
   return (
     <Swipeable
       overshootRight={false}
-      renderRightActions={() => <Animated.View></Animated.View>}>
+      renderRightActions={() => (
+        <Animated.View>
+          <View>
+            <RectButton style={styles.buttonRemove} onPress={handleRemove}>
+              <Feather name="trash" size={32} color={colors.white} />
+            </RectButton>
+          </View>
+        </Animated.View>
+      )}>
       <RectButton style={styles.container} {...rest}>
         <SvgFromUri uri={data.photo} width={50} height={50} />
         <Text style={styles.title}>{data.name}</Text>
@@ -43,6 +57,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.shape,
     marginVertical: 5,
+  },
+
+  buttonRemove: {
+    width: 100,
+    height: 85,
+    backgroundColor: colors.red,
+    marginTop: 15,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    right: 20,
+    paddingLeft: 15,
   },
 
   title: {
