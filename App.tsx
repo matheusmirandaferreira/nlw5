@@ -15,24 +15,24 @@ export default function App() {
   const [fontsLoaded] = useFonts({ Jost_400Regular, Jost_600SemiBold });
 
   useEffect(() => {
-    // const subscription = Notifications.addNotificationReceivedListener(
-    //   async notification => {
-    //     const data = notification.request.content.data.plant as PlantsProps;
-    //     console.log(data);
-    //   },
-    // );
+    const subscription = Notifications.addNotificationReceivedListener(
+      async notification => {
+        const data = notification.request.content.data.plant as PlantsProps;
+        console.log(data);
+      },
+    );
 
-    // return () => subscription.remove();
+    return () => subscription.remove();
 
-    async function notifications() {
-      // await Notifications.cancelAllScheduledNotificationsAsync();
+    // async function notifications() {
+    //   // await Notifications.cancelAllScheduledNotificationsAsync();
 
-      const data = await Notifications.getAllScheduledNotificationsAsync();
+    //   const data = await Notifications.getAllScheduledNotificationsAsync();
 
-      console.log(data);
-    }
+    //   console.log(data);
+    // }
 
-    notifications();
+    // notifications();
   }, []);
 
   if (!fontsLoaded) {
